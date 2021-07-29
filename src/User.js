@@ -1,4 +1,7 @@
+import { useHistory } from 'react-router-dom';
+
 const User = (props) => {
+  const history = useHistory();
   const { name, email, picture, location } = props.data;
   return (
     <div className='render-wrapper' key={email}>
@@ -10,7 +13,7 @@ const User = (props) => {
       </p>
       <p>{`${location.city}, ${location.state}`}</p>
       <p>{email}</p>
-      <button onClick={() => props.setLogout(false)}>Log Out</button>
+      <button onClick={() => history.push('/unmount')}>Logout</button>
     </div>
   );
 };
