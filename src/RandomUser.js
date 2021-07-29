@@ -12,7 +12,6 @@ const RandomUserFunc = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log('fetchuser');
       const res = await fetch(`https://randomuser.me/api/?seed=${searchWord}`);
       const data = await res.json();
       setData(data.results);
@@ -42,7 +41,7 @@ const RandomUserFunc = () => {
 
   return (
     <div className='container'>
-      {logged ? renderUser : login}
+      {!logged ? login : renderUser}
       <div className='form-wrapper'>
         <form
           onSubmit={(e) => {
@@ -59,7 +58,9 @@ const RandomUserFunc = () => {
             name='searchWord'
             placeholder='Username'
           />
-          <button type='submit'>Submit</button>
+          <button disabled={!logged} type='submit'>
+            Submit
+          </button>
         </form>
       </div>
     </div>
